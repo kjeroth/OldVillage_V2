@@ -5,13 +5,11 @@ package com.company;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Handler implements KeyListener {
+public class Handler extends Main implements KeyListener {
     private int count=0;
 
-    public Handler() {
 
-    }
-    Main.CardReader reader =new Main.CardReader();
+//    Main.CardReader reader =new Main.CardReader();
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -25,69 +23,71 @@ public class Handler implements KeyListener {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_0:
                     System.out.println("0");
-                    reader.übergabe(0, this.getCount());
+                    übergabe(0, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_1:
                     System.out.println("1");
-                    reader.übergabe(1, this.getCount());
+                    übergabe(1, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_2:
                     System.out.println("2");
-                    reader.übergabe(2, this.getCount());
+                    übergabe(2, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_3:
                     System.out.println("3");
-                    reader.übergabe(3, this.getCount());
+                    übergabe(3, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_4:
                     System.out.println("4");
-                    reader.übergabe(4, this.getCount());
+                    übergabe(4, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_5:
                     System.out.println("5");
-                    reader.übergabe(5, this.getCount());
+                    übergabe(5, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_6:
                     System.out.println("6");
-                    reader.übergabe(6, this.getCount());
+                   übergabe(6, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_7:
                     System.out.println("7");
-                    reader.übergabe(7, this.getCount());
+                    übergabe(7, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_8:
                     System.out.println("8");
-                    reader.übergabe(8, this.getCount());
+                    übergabe(8, this.getCount(),false);
                     this.count++;
                     break;
 
                 case KeyEvent.VK_9:
                     System.out.println("9");
-                    reader.übergabe(9, this.getCount());
+                    übergabe(9, this.getCount(),false);
                     this.count++;
                     break;
-
-
-                // default?!?!?!??!?!?!?!??!?!?!??!?!?!?
-
             }
-        }
+        }else  {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_ENTER:
+                    System.out.println("enter");
+                    übergabe(0, this.getCount(), true);
+                    break;
+            }}
 
     }
 

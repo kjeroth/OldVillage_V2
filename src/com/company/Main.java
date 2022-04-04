@@ -8,32 +8,34 @@ import java.awt.event.ActionListener;
 public class Main extends JFrame implements ActionListener {
 
 
-    public int btPressed;
- public static class CardReader {
-     public int zahl;
+     public int btPressed;public int zahl;
      public int count;
      public int[] arrayZahl=new int[10];
+     Abfragen abfragen =new Abfragen();
 
-     public void übergabe(int avg, int count) {
+
+     public void übergabe(int avg, int count, boolean enter) {
 
          this.setZahl(avg);
          this.setCount(count);
+         Main main1 =new Main();
+
 
 
          if (this.getCount() < 10) {
              this.setArrayZahl(this.getCount(), this.getZahl());
              System.out.println("count: " + this.getCount() + "zahl " + this.getZahl());
          }
-         if (this.getCount() == 9) {
+         if (this.getCount() >= 9 & enter ) {
              for (int value : this.arrayZahl) {
                  System.out.print(value);
              }
              System.out.println("ende");
-             Abfragen abfragen =new Abfragen();
-             Main main1 =new Main();
-             abfragen.chippId(this.arrayZahl,main1.getBtPressed());
+             abfragen.chippId(this.arrayZahl,this.getBtPressed());
          }
      }
+
+
      public void setArrayZahl(int count, int zahl) {
          arrayZahl[count] = zahl;
      }
@@ -49,15 +51,16 @@ public class Main extends JFrame implements ActionListener {
      public int getCount() {
          return count;
      }
-
      public void setCount(int avg) {
          count = avg;
      }
- }
+
+
+
     public int getBtPressed() {
         return btPressed;
     }
-    public void setBtPressed(int btPressed) {
+    public void setBtPressed(int pressed) {
         this.btPressed = btPressed;
     }
 
@@ -97,7 +100,7 @@ public class Main extends JFrame implements ActionListener {
     private JComboBox boxLöschenLöchen;
     private JComboBox boxzuweisen;
 
-    private Handler handler= new Handler();
+
     private JPanel kartenPanel;
     private CardLayout test;
 
@@ -105,6 +108,10 @@ public class Main extends JFrame implements ActionListener {
 	// write your code here
 
         Main main =new Main();
+        Handler handler= new Handler();
+
+
+
 
 
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +119,7 @@ public class Main extends JFrame implements ActionListener {
         main.setSize(500,500);
         main.setLayout(new FlowLayout());
 
-        main.getContentPane().addKeyListener(main.handler);
+        main.getContentPane().addKeyListener(handler);
         main.kartedemFrameZuweisen(main.getContentPane());
 
         //erstelle neue menüBar
@@ -217,7 +224,7 @@ public class Main extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void  actionPerformed(ActionEvent e)  {
         if (e.getSource().equals(identyfy)){
             System.out.println("identyfy get pressed");
             //Karte anzeigen
@@ -239,7 +246,6 @@ public class Main extends JFrame implements ActionListener {
             test.show(kartenPanel,"4");
         }
         if(e.getSource()==btnIdentifizieren){
-            this.handler.clear();
             this.getContentPane().requestFocus();
             this.setBtPressed(1);
         }
