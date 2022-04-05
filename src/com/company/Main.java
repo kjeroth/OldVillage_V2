@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Main extends  JFrame  implements ActionListener {
+public class Main extends JFrame implements ActionListener {
 
     //Jmenü
     private JMenuBar jmb;
@@ -65,13 +68,15 @@ public class Main extends  JFrame  implements ActionListener {
     private int[] arrayZahl = new int[10];
     private boolean mEnter;
 
+    private int numberWorld;
 
-
+    private static Map<String,Integer> data = new HashMap<>();
 
     public static void main(String[] args) {
         // write your code here
 
         Main main = new Main();
+        Helper helper = new Helper();
 
         // Chipp chipp =new Main().new Chipp();
         // Chipp chipp1=new Main().new Chipp(); //??
@@ -132,6 +137,16 @@ public class Main extends  JFrame  implements ActionListener {
         main.setJMenuBar(main.jmb);
         main.setVisible(true);
 
+        createFrame.createFrame();
+
+        main.btnIdentifizieren.addActionListener(new ActionListener(){
+            public void actionPerformed (ActionEvent e){
+                data.put("hallo", 1123);
+                System.out.println(main.getZahl());
+            }
+        });
+
+        //@TODO add the Button declarations here (like above) ->
 
     }
 
@@ -213,6 +228,7 @@ public class Main extends  JFrame  implements ActionListener {
 
     }
 
+    //@TODO rework every button to this one above in line 139
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(identyfy)) {
@@ -223,8 +239,7 @@ public class Main extends  JFrame  implements ActionListener {
         if (e.getSource().equals(insItem)) {
             System.out.println("Item get pressed");
             test.show(kartenPanel, "3");
-            System.out.println("das ist der Chipp"+this.getArrayZahl());
-
+            System.out.println("das ist der Chipp"+ Arrays.toString(this.getArrayZahl()));
         }
         if (e.getSource() == insSkill) {
             System.out.println("skill get pressed");
@@ -259,7 +274,10 @@ public class Main extends  JFrame  implements ActionListener {
                 System.out.print(value);
             }
             JOptionPane.showMessageDialog(null, getArrayZahl());
-            System.out.println("ende "+ getBtPressed());            }
+            System.out.println("ende "+ getBtPressed());
+            // data = Hashmap test value
+            System.out.println("Testers test worked fine heheh " + data.get("hallo"));
+        }
     }
 
     public JRadioButton getRbStatus() {
@@ -308,5 +326,11 @@ public class Main extends  JFrame  implements ActionListener {
         this.btPressed = pressed;
     }
 
+    public int getNumberWorld() {
+        return this.numberWorld;
+    }
 
+    public void setNumberWorld(int numberWorld) {
+        this.numberWorld = numberWorld;
+    }
 }
