@@ -10,7 +10,7 @@ public class Main extends  JFrame  implements ActionListener {
 
     public int btPressed;
     public int zahl;
-    public int count;
+    public int mainCount;
     public int[] arrayZahl = new int[10];
     public boolean mEnter;
     // Abfragen abfragen =new Abfragen();
@@ -18,36 +18,37 @@ public class Main extends  JFrame  implements ActionListener {
 
     public void übergabe(int avg, int count, boolean enter) {
 
-
         this.setZahl(avg);
-        this.setCount(count);
-        this.mEnter = enter;
+        this.setMainCount(count);
+        this.setmEnter(enter);
 
-
-
-        if (this.getCount() < 10) {
-            this.setArrayZahl(this.getCount(), this.getZahl());
-            System.out.println("count: " + this.getCount() + "zahl " + this.getZahl());
+        if (this.getMainCount() < 10) {
+            this.setArrayZahl(this.getMainCount(), this.getZahl());
+            System.out.println("count: " + this.getMainCount() + "zahl " + this.getZahl());
         }
-        if (this.getCount() >= 9 & this.mEnter) {
-            for (int value : this.arrayZahl) {
+        if (this.getMainCount() >= 9 & this.getmEnter()) {
+            for (int value : this.getArrayZahl()) {
                 System.out.print(value);
                 // abfragen.chippId(getArrayZahl());
 
             }
             JOptionPane.showMessageDialog(null, getArrayZahl());
             System.out.println("ende");
-
             // an dieser Stelle soll das Array an getChippId übergeben werden
             // oder direkt an chippID--> ausder eingebundenen klasse Abfragen in der Klasse Chipp
             //   chip1.chippId(this.arrayZahl,this.getBtPressed());
-
         }
     }
 
+    public  void setmEnter(boolean avg){
+        this.mEnter=avg;
+    }
+    public boolean getmEnter(){
+        return this.mEnter;
+    }
 
-    public void setArrayZahl(int count, int zahl) {
-        arrayZahl[count] = zahl;
+    public void setArrayZahl(int avg, int zahl) {
+        arrayZahl[avg] = zahl;
     }
 
     public int[] getArrayZahl() {
@@ -62,12 +63,12 @@ public class Main extends  JFrame  implements ActionListener {
         zahl = avg;
     }
 
-    public int getCount() {
-        return count;
+    public int getMainCount() {
+        return mainCount;
     }
 
-    public void setCount(int avg) {
-        count = avg;
+    public void setMainCount(int avg) {
+        mainCount = avg;
     }
 
     public int getBtPressed() {
@@ -126,6 +127,9 @@ public class Main extends  JFrame  implements ActionListener {
         // Chipp chipp =new Main().new Chipp();
         // Chipp chipp1=new Main().new Chipp(); //??
         Handler handler = new Handler();
+
+
+
 
 
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -258,8 +262,8 @@ public class Main extends  JFrame  implements ActionListener {
             test.show(kartenPanel, "4");
         }
         if (e.getSource() == btnIdentifizieren) {
-            this.getContentPane().requestFocus();
             setBtPressed(1);
+            this.getContentPane().requestFocus();
             System.out.println("getBtPressed:" + getBtPressed());
 
         }
