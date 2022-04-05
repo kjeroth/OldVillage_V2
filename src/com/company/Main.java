@@ -5,77 +5,91 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Main extends JFrame implements ActionListener {
+public class Main extends  JFrame  implements ActionListener {
 
 
-     public int btPressed;public int zahl;
-     public int count;
-     public int[] arrayZahl=new int[10];
-     Abfragen abfragen =new Abfragen();
+    public int btPressed;
+    public int zahl;
+    public int count;
+    public int[] arrayZahl = new int[10];
+    public boolean mEnter;
+    // Abfragen abfragen =new Abfragen();
 
 
-     public void übergabe(int avg, int count, boolean enter) {
-
-         this.setZahl(avg);
-         this.setCount(count);
-         Main main1 =new Main();
+    public void übergabe(int avg, int count, boolean enter) {
 
 
-
-         if (this.getCount() < 10) {
-             this.setArrayZahl(this.getCount(), this.getZahl());
-             System.out.println("count: " + this.getCount() + "zahl " + this.getZahl());
-         }
-         if (this.getCount() >= 9 & enter ) {
-             for (int value : this.arrayZahl) {
-                 System.out.print(value);
-             }
-             System.out.println("ende");
-             abfragen.chippId(this.arrayZahl,this.getBtPressed());
-         }
-     }
+        this.setZahl(avg);
+        this.setCount(count);
+        this.mEnter = enter;
 
 
-     public void setArrayZahl(int count, int zahl) {
-         arrayZahl[count] = zahl;
-     }
-     public int[] getArrayZahl() {
-         return arrayZahl;
-     }
-     public int getZahl() {
-         return zahl;
-     }
-     public void setZahl(int avg) {
-         zahl = avg;
-     }
-     public int getCount() {
-         return count;
-     }
-     public void setCount(int avg) {
-         count = avg;
-     }
+
+        if (this.getCount() < 10) {
+            this.setArrayZahl(this.getCount(), this.getZahl());
+            System.out.println("count: " + this.getCount() + "zahl " + this.getZahl());
+        }
+        if (this.getCount() >= 9 & this.mEnter) {
+            for (int value : this.arrayZahl) {
+                System.out.print(value);
+                // abfragen.chippId(getArrayZahl());
+
+            }
+            JOptionPane.showMessageDialog(null, getArrayZahl());
+            System.out.println("ende");
+
+            // an dieser Stelle soll das Array an getChippId übergeben werden
+            // oder direkt an chippID--> ausder eingebundenen klasse Abfragen in der Klasse Chipp
+            //   chip1.chippId(this.arrayZahl,this.getBtPressed());
+
+        }
+    }
 
 
+    public void setArrayZahl(int count, int zahl) {
+        arrayZahl[count] = zahl;
+    }
+
+    public int[] getArrayZahl() {
+        return arrayZahl;
+    }
+
+    public int getZahl() {
+        return zahl;
+    }
+
+    public void setZahl(int avg) {
+        zahl = avg;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int avg) {
+        count = avg;
+    }
 
     public int getBtPressed() {
         return btPressed;
     }
+
     public void setBtPressed(int pressed) {
-        this.btPressed = btPressed;
+        this.btPressed = pressed;
     }
 
 
     private JMenuBar jmb;
 
     private JMenu identifizieren;
-    private JMenu einfügen ;
-    private JMenu chipp ;
+    private JMenu einfügen;
+    private JMenu chipp;
 
     private JMenuItem identyfy;
-    private JMenuItem insItem ;
+    private JMenuItem insItem;
     private JMenuItem insSkill;
-    private JMenuItem zuweisen ;
-    private JMenuItem löschen ;
+    private JMenuItem zuweisen;
+    private JMenuItem löschen;
 
     private JPanel karteWilkommen;
     private JPanel karteIdentification;
@@ -105,18 +119,18 @@ public class Main extends JFrame implements ActionListener {
     private CardLayout test;
 
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
 
-        Main main =new Main();
-        Handler handler= new Handler();
+        Main main = new Main();
 
-
-
+        // Chipp chipp =new Main().new Chipp();
+        // Chipp chipp1=new Main().new Chipp(); //??
+        Handler handler = new Handler();
 
 
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.pack();
-        main.setSize(500,500);
+        main.setSize(500, 500);
         main.setLayout(new FlowLayout());
 
         main.getContentPane().addKeyListener(handler);
@@ -171,11 +185,11 @@ public class Main extends JFrame implements ActionListener {
 
     private void kartedemFrameZuweisen(Container content) {
         //Karten erzeugen
-        karteWilkommen          = new JPanel();
-        karteIdentification     = new JPanel();
-        karteObjektEinfügen     = new JPanel();
-        karteChippLöschen       = new JPanel();
-        karteChippZuweisen      = new JPanel();
+        karteWilkommen = new JPanel();
+        karteIdentification = new JPanel();
+        karteObjektEinfügen = new JPanel();
+        karteChippLöschen = new JPanel();
+        karteChippZuweisen = new JPanel();
 
         //Wilkommen--> Pnael Inhalt
         karteWilkommen.add(new JLabel("Wilkommen Ödländer"));
@@ -184,14 +198,13 @@ public class Main extends JFrame implements ActionListener {
 
         //textfelder erstellen
         name = new JTextField();
-        name.setPreferredSize(new Dimension(250,80));
+        name.setPreferredSize(new Dimension(250, 80));
 
         //butten ersetellen
-        btnIdentifizieren =new JButton("Identifizieren");
+        btnIdentifizieren = new JButton("Identifizieren");
 
         //action listenere hinzufügen
         btnIdentifizieren.addActionListener(this);
-
 
 
         // ItemIdentification -->Panel Inhalt
@@ -204,15 +217,14 @@ public class Main extends JFrame implements ActionListener {
         //  karteIdentification.add(new JTextField("Beschreibung",20));
 
         //neues JPanel enthält das CardLayout, enthältdie Karten
-        kartenPanel =new JPanel(new CardLayout());
+        kartenPanel = new JPanel(new CardLayout());
 
         //wichtig Objekt benötigt string zum Aufrufen
-        kartenPanel.add(karteWilkommen,"1");
+        kartenPanel.add(karteWilkommen, "1");
         kartenPanel.add(karteIdentification, "2");
-        kartenPanel.add(karteObjektEinfügen,"3");
-        kartenPanel.add(karteChippLöschen,"4");
-        kartenPanel.add(karteChippZuweisen,"5");
-
+        kartenPanel.add(karteObjektEinfügen, "3");
+        kartenPanel.add(karteChippLöschen, "4");
+        kartenPanel.add(karteChippZuweisen, "5");
 
 
         //zusammenfügen
@@ -224,30 +236,32 @@ public class Main extends JFrame implements ActionListener {
     }
 
     @Override
-    public void  actionPerformed(ActionEvent e)  {
-        if (e.getSource().equals(identyfy)){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(identyfy)) {
             System.out.println("identyfy get pressed");
             //Karte anzeigen
-            test.show(kartenPanel,"2");
+            test.show(kartenPanel, "2");
         }
-        if (e.getSource().equals(insItem)){
+        if (e.getSource().equals(insItem)) {
             System.out.println("Item get pressed");
-            test.show(kartenPanel,"3");
+            test.show(kartenPanel, "3");
         }
-        if (e.getSource() == insSkill){
+        if (e.getSource() == insSkill) {
             System.out.println("skill get pressed");
         }
-        if (e.getSource() == zuweisen){
+        if (e.getSource() == zuweisen) {
             System.out.println("zuweisen get pressed");
-            test.show(kartenPanel,"5");
+            test.show(kartenPanel, "5");
         }
-        if (e.getSource() == löschen){
+        if (e.getSource() == löschen) {
             System.out.println("löschen get pressed");
-            test.show(kartenPanel,"4");
+            test.show(kartenPanel, "4");
         }
-        if(e.getSource()==btnIdentifizieren){
+        if (e.getSource() == btnIdentifizieren) {
             this.getContentPane().requestFocus();
-            this.setBtPressed(1);
+            setBtPressed(1);
+            System.out.println("getBtPressed:" + getBtPressed());
+
         }
     }
 }

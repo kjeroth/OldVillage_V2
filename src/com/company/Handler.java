@@ -1,11 +1,17 @@
 package com.company;
 
-// import com.company.Main.InnereKlasse;
+
+
+
+
+
+import com.company.Main;
+
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Handler extends Main implements KeyListener {
+public class Handler extends Main  implements KeyListener {
     private int count=0;
 
 
@@ -15,6 +21,7 @@ public class Handler extends Main implements KeyListener {
     public void keyTyped(KeyEvent e) {
 
     }
+
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -41,6 +48,7 @@ public class Handler extends Main implements KeyListener {
 
                 case KeyEvent.VK_3:
                     System.out.println("3");
+
                     übergabe(3, this.getCount(),false);
                     this.count++;
                     break;
@@ -59,7 +67,7 @@ public class Handler extends Main implements KeyListener {
 
                 case KeyEvent.VK_6:
                     System.out.println("6");
-                   übergabe(6, this.getCount(),false);
+                    übergabe(6, this.getCount(),false);
                     this.count++;
                     break;
 
@@ -84,11 +92,11 @@ public class Handler extends Main implements KeyListener {
         }else  {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_ENTER:
-                    System.out.println("enter");
+                    System.out.println("enter"+" buttonstat "+ getBtPressed());
                     übergabe(0, this.getCount(), true);
                     break;
-            }}
-
+            }
+        }
     }
 
 
